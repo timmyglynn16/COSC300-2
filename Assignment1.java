@@ -1,8 +1,12 @@
 public class Assignment1 {
 
     public static void main(String[] args) {
-        // Prints "Hello, World" to the terminal window.
-        System.out.println("Good test");
+        System.out.println("The Odd Numbers are:");
+		for (int i = 1; i <= 1001; i++) {
+			if (i % 2 != 0) {
+				System.out.print(i+ ((i%20==9) ? "\n" : " "));
+			}
+		}
     }
-
 }
+
