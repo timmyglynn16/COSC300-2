@@ -7,10 +7,29 @@ public class Assignment1 {
 
     public static void main(String[] args) {
 
+       long startTimeODD = System.nanoTime();
        OddNums();
+       long endTimeODD = System.nanoTime();
+       long totalTimeODD = endTimeODD - startTimeODD;
+       System.out.println("OddNums method took: " + totalTimeODD + " nanoseconds");
+
+       long startTimeCAL = System.nanoTime();
        CalenderOps();
+       long endTimeCAL = System.nanoTime();
+       long totalTimeCAL = endTimeCAL - startTimeCAL;
+       System.out.println("CalenderOps took: " + totalTimeCAL + " nanoseconds");
+
+       long startTimeMAX = System.nanoTime();
        FindMax();
+       long endTimeMAX = System.nanoTime();
+       long totalTimeMAX = endTimeMAX - startTimeMAX;
+       System.out.println("FindMax took: " + totalTimeMAX + " nanoseconds");
+
+       long startTimeTEMP = System.nanoTime();
        ConvertTemp();
+       long endtimeTEMP = System.nanoTime();
+       long totalTimeTEMP = endtimeTEMP - startTimeTEMP;
+       System.out.println("ConverTemp took: " + totalTimeTEMP + " nanoseconds");
         
 
     }
@@ -33,15 +52,12 @@ public class Assignment1 {
         System.out.println("Enter number of days");
         double days = input.nextInt();
 
-        //convert to years
         double years = days/365;
-        System.out.println("Days converted to years: " + years);
-
-        //conert to months
         double months = days/12;
-        System.out.println("Days converted to months: " + months);
 
-        //conver to WHAT??
+        System.out.println("Days: " + days);
+        System.out.println("Years: " + years);
+        System.out.println("Months: " + months);
 
         System.out.println();
     }
@@ -75,7 +91,7 @@ public class Assignment1 {
 
         System.out.println("Temp (F) to Temp (C): ");
         System.out.printf("%.2f", tempC);
-        //System.out.printf("Temp (F) to Temp (C): " + tempC);
+        //System.out.printf("Temp (F) to Temp (C): " + temp);
         System.out.println();
 
     }

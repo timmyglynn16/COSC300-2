@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <iomanip>
+#include <chrono>
+
 using namespace std;
 
 
@@ -88,8 +90,28 @@ void ConvertTemp(){
 //main has to be called last??
 int main() {
     //std::cout << "Main was reached";
+
+    auto startODD = chrono::steady_clock::now();
     OddNums();
+    auto endODD = chrono::steady_clock::now();
+    auto totalODD = endODD - startODD;
+    cout << "OddNums function took: " << chrono::duration <double, nano> (totalODD).count() << " nanoseconds" << endl;
+
+    auto startCAL = chrono::steady_clock::now();
     CalenderOps();
+    auto endCAL = chrono::steady_clock::now();
+    auto totalCAL = endCAL - startCAL;
+    cout << "CalenderOps function took: " << chrono::duration <double, nano> (totalCAL).count() << " nanoseconds" << endl;
+
+    auto startMAX = chrono::steady_clock::now();
     FindMax();
+    auto endMAX = chrono::steady_clock::now();
+    auto totalMAX = endMAX - startMAX;
+    cout << "FindMax function took: " << chrono::duration <double, nano> (totalMAX).count() << " nanoseconds" << endl;
+
+    auto startTEMP = chrono::steady_clock::now();
     ConvertTemp();
+    auto endTEMP = chrono::steady_clock::now();
+    auto totalTEMP = endTEMP - startTEMP;
+    cout << "CalenderTemp function took: " << chrono::duration <double, nano> (totalTEMP).count() << " nanoseconds" << endl;
 }
