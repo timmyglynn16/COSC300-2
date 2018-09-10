@@ -1,0 +1,12 @@
+C++
+Applications:
+    Like we discussed in class, C++ is all about speed. Becuase of 
+    that, C++ is better to be used for games
+
+Java
+
+C
+
+Python
+
+C#

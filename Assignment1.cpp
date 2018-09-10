@@ -8,11 +8,11 @@ using namespace std;
 
 void OddNums(){
 
-    cout << "Print Odd Numbers from 1 to 10001";
+    cout << "Print Odd Numbers from 1 to 1001";
     cout << "\n\n";
     for (int a=1; a<=10001; a+=2) {
      
-        cout << " " << a << " ";\
+        cout << " " << a << " "; 
         if ((a % 20) == 9) // print 10 lines per line
         cout << endl;
     }
