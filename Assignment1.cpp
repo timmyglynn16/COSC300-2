@@ -6,7 +6,6 @@
 
 using namespace std;
 
-//hi jules
 void OddNums(){
 
     cout << "Print Odd Numbers from 1 to 10001";
