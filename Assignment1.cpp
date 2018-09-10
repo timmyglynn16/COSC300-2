@@ -28,14 +28,15 @@ void CalenderOps(){
 
     cout << "Enter how many days:" << endl;
     double day;
-    cin >> day;
+    cin >> day; 
+    cout << endl;
 
     double year = day/365.0;
-    double month = ceil(day * 0.032855); //ceil rounds up the value
+    double month = day * 0.032855; 
 
     cout << "Days: " << day << endl;
     cout << "Years: " << year << endl;
-    cout << "Months: " << month << endl; //value for more understandable answer
+    cout << "Months: " << month << endl;
 
 }
 
@@ -75,6 +76,7 @@ void ConvertTemp(){
     
     double tempF;
     cin >> tempF;
+    cout << endl;
 
     double tempC = (tempF-32.0)*(5.0/9.0);
 
