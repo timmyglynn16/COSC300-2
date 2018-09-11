@@ -1,12 +1,30 @@
 C++
 Applications:
     Like we discussed in class, C++ is all about speed. Becuase of 
-    that, C++ is better to be used for games
+    that, C++ is better to be used for games and GUI (graphics) applications.
+
 
 Java
+Applications:
+    Java is meant to be a multi-use platform for any and all things programming
+    However it is mostly used in mobile app development like Android.
+    Java can be run on almost any platform which makes it easy for anyone to learn
 
 C
+Applications:
+    Since C is basically an older version of C++, it is most commonly used for 
+    low-level applications like firmware on a television. It is also used 
+    in embedded systems of Windows and in the OS of airplanes
+
 
 Python
+Applications: 
+    Python is regarded as the easiest programming language to learn. 
+    It is fast, it is powerful, and it can be used to do pretty much everything/anything
+    Python has gained a lot of interest in the past decade and is widely used in 
+    app development today in apps like Instagram and Pinterest
+
 
 C#
+Applications
+    C# is almost identical to Java. It is most commonly used in Microsoft apps! 
