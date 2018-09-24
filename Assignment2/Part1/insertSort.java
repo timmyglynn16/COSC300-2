@@ -1,7 +1,6 @@
-import java.util.Scanner;
 
 public class insertSort {
-    public static void main(String[] args) {
+    public static void main(String[] args) { 
         
         int[] a = { 7, 8, 9, 10, 1, 6, 2, 4, 3, 5};
         insertSort(a, a.length);
@@ -10,7 +9,7 @@ public class insertSort {
         System.out.print(i + " ");
         System.out.println();
     
-    }
+    } 
     
     static void insertSort(int[] a, int num) {
         
