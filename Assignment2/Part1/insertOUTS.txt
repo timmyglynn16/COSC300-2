@@ -12,7 +12,7 @@ tglynn@tglynn-MacBookPro:~/COSC300/Assignment2/Part1$ ./run
 1 2 3 4 5 6 7 8 9 10 
 Elapsed time: 1.605e-06 s
 
-insertSor3.cpp
+insertSort3.cpp
 tglynn@tglynn-MacBookPro:~/COSC300/Assignment2/Part1$ g++ insertSort3.cpp -orun
 tglynn@tglynn-MacBookPro:~/COSC300/Assignment2/Part1$ ./run
 1 2 3 4 5 6 7 8 9 10 
