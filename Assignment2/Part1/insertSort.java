@@ -13,7 +13,7 @@ public class insertSort {
         System.out.print(i + " ");
         System.out.println();
 
-        System.out.println("Elapsed Time: " + totalTimeODD/1000 + " seconds");
+        System.out.println("Elapsed Time: " + totalTimeODD/1000.000 + " seconds");
 
     } 
     
