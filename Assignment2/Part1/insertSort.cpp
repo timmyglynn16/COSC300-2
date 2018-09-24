@@ -7,12 +7,9 @@ void insertSort1(int a[], int num) {
             
         while(i > 0 && a[i-1] > t) {
             a[i] = a[i-1];
-            i--;
-                
-        }
-                
-            a[i] = t;
-        
+            i--;         
+        }        
+            a[i] = t;  
     }
 }
     
