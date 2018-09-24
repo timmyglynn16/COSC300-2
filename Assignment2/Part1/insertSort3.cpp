@@ -2,7 +2,7 @@
 using namespace std;
 
 
-void insertSort(int* low, int* high) {
+void insertSort3(int* low, int* high) {
     for(int *p=low; p<=high; p++) {
         int t = *p, *q = p;
         
@@ -18,8 +18,8 @@ void insertSort(int* low, int* high) {
 
 int main(void) {
     int a[] = { 7, 8, 9, 10, 1, 6, 2, 4, 3, 5};
-    int *low = a, *high = a + sizeof(a)/sizeof(a[0]) – 1;
-    insertSort(low, high);
+    int *low = a, *high = a + sizeof(a)/sizeof(a[0]) - 1;
+    insertSort3(low, high);
     for(int *p=low; p<=high; p++)
         cout << *p << " ";
         cout << endl;
