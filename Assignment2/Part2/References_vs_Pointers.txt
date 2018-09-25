@@ -1,0 +1,11 @@
+The name 'reference' makes sense for its definition. It is just a reference to an already existing
+variable. On the other hand, a pointer holds (or points to) the memory address of a variable.
+Both are implemented by storing the address of an object and are both used to have variables accessing
+one another. Also, both references and pointers use the same amount of memory. 
+
+While they are similar, references and pointers have their differences. Pointers can be re-assignedd any
+number of times while a reference, once binded, cannot be re-assigned. Referenes always have to refer to an
+object but pointers can technically point to nothing (null). 
+
+References should be used in function parameters and return types (as shown in my programs). Pointers should be used for implementing 
+algorithms (like sorting and searching) and data structres (like arrays). 
