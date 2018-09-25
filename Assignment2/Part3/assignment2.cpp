@@ -81,8 +81,8 @@ int *binsearch(int *low, int *high, int key) {
     }*/
 
 
-    // ONLINE HELP: needed to make these 'references' that represent the *low, *high pointers
-    // this way i can do arithmetic when calculating the *mid
+    // figured out after figuring out sort algorithm
+    // two pointers are needed to rep *low and *high and also to do arithmetic for *mid
     int *ptr1 = low;
     int *ptr2 = high;
     int *mid = (ptr1 + (ptr2 - ptr1) / 2);// calculate the mid value and point to the address of mid
@@ -126,6 +126,7 @@ int main(){
     }
 
     // SELECTION SORT
+    // use references (&) in function parameters 
     selection_sort(&arr[0], &arr[n-1]);
 
     cout << "\nSorted array: \n";
@@ -140,6 +141,7 @@ int main(){
     cout << endl;
     
     // call the function to search for a key in the array
+    // use references (&) in function parameters 
     int *keyFound = binsearch(&arr[0], &arr[n-1], key);
     
     if (keyFound >= &arr[n-1])
