@@ -47,7 +47,7 @@ int main()
     
     int length;
     int n;
-    cout << "enter length of queue: ";
+    cout << "Enter length of queue: ";
     cin >> length; 
 
     StackQueue q; 
@@ -55,7 +55,7 @@ int main()
     for(int i=0; i < length; i++ ) {
     //bool ok = true;
     //while(ok) {
-        cout << "Enter a value to put in queue:";
+        cout << "Enter values to put in queue:";
         cin >> n;
         q.enQueue(n);
     } 
