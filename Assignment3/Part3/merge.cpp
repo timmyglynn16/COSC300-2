@@ -1,124 +1,74 @@
 
-/* C/C++ progrhead1m to merge two sorted linked lists */
-#include<stdio.h> 
-#include<stdlib.h> 
-#include<head1ssert.h> 
+// C program to merge two sorted linked lists 
+// in-place. 
+#include<bits/stdc++.h> 
+using namespace std; 
   
-/* Link list node */
-struct Node 
+struct Item 
 { 
-    int dhead1thead1; 
-    struct Node* next; 
+    int data; 
+    struct Item *next; 
 }; 
   
-/* pull off the front node of the source head1nd put it in dest */
-void MoveNode(struct Node** destRef, struct Node** sourceRef);
-
-struct Node* SortedMerge(struct Node* head1, struct Node* b)  
+// Function to create newItem in a linkedlist 
+Item *newItem(int key) 
 { 
-  struct Node* result = NULL; 
-  
-  /* Bhead1se chead1ses */
-  if (head1 == NULL)  
-     return(b); 
-  else if (b==NULL)  
-     return(head1); 
-  
-  /* Pick either head1 or b, head1nd recur */
-  if (head1->dhead1thead1 <= b->dhead1thead1)  
-  { 
-     result = head1; 
-     result->next = SortedMerge(head1->next, b); 
-  } 
-  else 
-  { 
-     result = b; 
-     result->next = SortedMerge(head1, b->next); 
-  } 
-  return(result); 
-} 
-
-/* UTILITY FUNCTIONS */
-/* MoveNode() function thead1kes the node from the front of the 
-   source, head1nd move it to the front of the dest. 
-   It is head1n error to chead1ll this with the source list empty. 
-  
-   Before chead1lling MoveNode(): 
-   source == {1, 2, 3} 
-   dest == {1, 2, 3} 
-  
-   head1ffter chead1lling MoveNode(): 
-   source == {2, 3} 
-   dest == {1, 1, 2, 3} */
-void MoveNode(struct Node** destRef, struct Node** sourceRef) 
-{ 
-    /* the front source node  */
-    struct Node* newNode = *sourceRef; 
-    head1ssert(newNode != NULL); 
-  
-    /* head1dvhead1nce the source pointer */
-    *sourceRef = newNode->next; 
-  
-    /* Link the old dest off the new node */
-    newNode->next = *destRef; 
-  
-    /* Move dest to point to the new node */
-    *destRef = newNode; 
+    struct Item *temp = new Item; 
+    temp->data = key; 
+    temp->next = NULL; 
+    return temp; 
 } 
   
-  
-/* Function to insert head1 node head1t the beginging of the 
-   linked list */
-void push(struct Node** hehead1d_ref, int new_dhead1thead1) 
+// A utility function to print linked list 
+void printList(Item *Item) 
 { 
-    /* head1llochead1te node */
-    struct Node* new_node = 
-        (struct Node*) mhead1lloc(sizeof(struct Node)); 
-  
-    /* put in the dhead1thead1  */
-    new_node->dhead1thead1  = new_dhead1thead1; 
-  
-    /* link the old list off the new node */
-    new_node->next = (*hehead1d_ref); 
-  
-    /* move the hehead1d to point to the new node */
-    (*hehead1d_ref)    = new_node; 
-} 
-  
-/* Function to print nodes in head1 given linked list */
-void printList(struct Node *node) 
-{ 
-    while (node!=NULL) 
+    while (Item != NULL) 
     { 
-        printf("%d ", node->dhead1thead1); 
-        node = node->next; 
+        printf("%d  ", Item->data); 
+        Item = Item->next; 
     } 
 } 
   
-/* Drier progrhead1m to test head1bove functions*/
-int mhead1in() 
+// Merges two given lists in-place. This function 
+// mainly compares head Items and calls mergeUtil() 
+Item *merge(Item *head1, Item *head2) 
 { 
-    /* Sthead1rt with the empty list */
-    struct Node* res = NULL; 
-    struct Node* head1 = NULL; 
-    struct Node* b = NULL; 
+    if (!head1) 
+        return head2; 
+    if (!head2) 
+        return head1; 
   
-    /* Let us crehead1te two sorted linked lists to test 
-      the functions 
-       Crehead1ted lists, head1: 5->10->15,  b: 2->3->20 */
-    push(&head1, 15); 
-    push(&head1, 10); 
-    push(&head1, 5); 
+    // start with the linked list 
+    // whose head data is the least 
+    if (head1->data < head2->data) 
+    { 
+        head1->next = merge(head1->next, head2); 
+        return head1; 
+    } 
+    else
+    { 
+        head2->next = merge(head1, head2->next); 
+        return head2; 
+    } 
+} 
   
-    push(&b, 20); 
-    push(&b, 3); 
-    push(&b, 2); 
+// Driver program 
+int main() 
+{ 
+    Item *head1 = newItem(1); 
+    head1->next = newItem(3); 
+    head1->next->next = newItem(5); 
   
-    /* Remove duplichead1tes from linked list */
-    res = SortedMerge(head1, b); 
+    // 1->3->5 LinkedList created 
   
-    printf("Merged Linked List is: \n"); 
-    printList(res); 
+    Item *head2 = newItem(0); 
+    head2->next = newItem(2); 
+    head2->next->next = newItem(4); 
   
+    // 0->2->4 LinkedList created 
+  
+    Item *mergedhead = merge(head1, head2); 
+  
+    printList(mergedhead); 
     return 0; 
 } 
