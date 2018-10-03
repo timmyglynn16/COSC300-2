@@ -68,9 +68,10 @@ int main() {
     }  */
 
 
-    // set hi and lo equal to the length of the array 
-    // sizeof(a) returns the number of BYTES the array occupies
-    // divide by the first element of the array to get the number of ELEMENTS in the array
+    // set hi and lo equal to the length of the array - WRONG
+    // sizeof(a) returns the number of BYTES the array occupies - okay
+    // divide by the first element of the array to get the number of ELEMENTS in the array - okay
+    // int lo = sizeof(a)/sizeof(a[0]); - NOOO
     //int lo = a[0]; 
     //int hi = a[i++];
 
