@@ -11,6 +11,7 @@ struct Item
 }; 
   
 // Function to create newItem in a linkedlist 
+// HELP FROM: 
 Item *newItem(int key) 
 { 
     struct Item *temp = new Item; 
@@ -20,6 +21,7 @@ Item *newItem(int key)
 } 
   
 // A utility function to print linked list 
+// HELP FROM: 
 void printList(Item *Item) 
 { 
     while (Item != NULL) 
@@ -29,8 +31,8 @@ void printList(Item *Item)
     } 
 } 
   
-// Merges two given lists in-place. This function 
-// mainly compares head Items and calls mergeUtil() 
+// Merges two given lists in-place recursively. 
+// This function mainly compares head Items and calls mergeUtil() 
 Item *merge(Item *head1, Item *head2) 
 { 
     if (!head1) 
@@ -55,18 +57,17 @@ Item *merge(Item *head1, Item *head2)
 // Driver program 
 int main() 
 { 
+    // "take two linked lists, POINTED to by head1 and head2"
     Item *head1 = newItem(1); 
     head1->next = newItem(3); 
     head1->next->next = newItem(5); 
-  
-    // 1->3->5 LinkedList created 
   
     Item *head2 = newItem(0); 
     head2->next = newItem(2); 
     head2->next->next = newItem(4); 
   
-    // 0->2->4 LinkedList created 
-  
+    // returns a POINTER to a single list 
+    // which contains all of the elements of the two lists in sorted order
     Item *mergedhead = merge(head1, head2); 
   
     printList(mergedhead); 
