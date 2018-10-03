@@ -1,9 +1,12 @@
 #include <iostream> 
+#include <string>
+#include <vector>
+
 using namespace std; 
   
 // recursive function 
-int smallest(int a[], int lo, int hi) 
-{ 
+int smallest(int a[], int lo, int hi) { 
+
     //int midpoint = (hi - lo) / 2;
     //int min_left = smallest(a, lo, midpoint);
     //int min_right = smallest(a, midpoint+1, hi);
@@ -40,13 +43,16 @@ int smallest(int a[], int lo, int hi)
     //return min(a[0], smallest(a, lo+1, hi-1)); 
 } 
 
+// not sure if this is allowed, but I couldnt figure out how to 
+// use recursion without passing the size of the array
+// ASK???
 int smallest(int a[], int n) {
     return smallest(a, 0, n);
 }
 
-int main() 
-{ 
+int main() { 
 
+/*
     int n, i;
     int a[n];
 
@@ -59,15 +65,16 @@ int main()
     { 
         cout << "Enter element " << i+1 << ": "; 
         cin >> a[i]; 
-    } 
+    }  */
+
 
     // set hi and lo equal to the length of the array 
     // sizeof(a) returns the number of BYTES the array occupies
     // divide by the first element of the array to get the number of ELEMENTS in the array
     //int lo = a[0]; 
-    //int hi = a[i++]; 
-    int lo = a[0]; 
-    int hi = a[n-1]; 
-    cout <<  smallest(a, n); 
-    return 0; 
+    //int hi = a[i++];
+
+    int a[] = {99, 7, 48, 9, 21};
+    cout << "Minimum found at position: ";
+    cout <<  smallest(a, 5) << endl; 
 } 
