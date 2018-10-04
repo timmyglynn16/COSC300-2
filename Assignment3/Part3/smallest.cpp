@@ -1,4 +1,4 @@
-#include <iostream> 
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -7,16 +7,18 @@ using namespace std;
 // recursive function 
 int smallest(int a[], int lo, int hi) { 
 
+    // NOT QUITE... come back to it
+
     //int midpoint = (hi - lo) / 2;
     //int min_left = smallest(a, lo, midpoint);
     //int min_right = smallest(a, midpoint+1, hi);
 
-    /*
+    /* 
     if(min_left < min_right)
     return min_left;
 
     if(min_right < min_left)
-    return min_right; */
+    return min_right; */ 
 
     if (lo >= hi -1) {
         return lo;
@@ -34,8 +36,8 @@ int smallest(int a[], int lo, int hi) {
         }
     }
 
-    //return min(smallest(a, lo-1, hi+1));
-
+    // NO- just inputting the size here, not what i want...
+    // come back
     /*
     if (lo == 1) 
         return a[0]; */
@@ -44,8 +46,7 @@ int smallest(int a[], int lo, int hi) {
 } 
 
 // not sure if this is allowed, but I couldnt figure out how to 
-// use recursion without passing the size of the array
-// ASK???
+// ...use recursion without passing the size of the array
 int smallest(int a[], int n) {
     return smallest(a, 0, n);
 }
@@ -75,6 +76,8 @@ int main() {
     //int lo = a[0]; 
     //int hi = a[i++];
 
+    // for some reason I coudn't implement a user inputted array...
+    // ... can you help? 
     int a[] = {99, 7, 48, 9, 21};
     cout << "Minimum found at position: ";
     cout <<  smallest(a, 5) << endl; 

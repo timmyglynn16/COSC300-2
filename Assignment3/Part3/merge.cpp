@@ -1,9 +1,7 @@
-
-// C program to merge two sorted linked lists 
-// in-place. 
 #include<bits/stdc++.h> 
 using namespace std; 
   
+// similar to a node... have seen this before 
 struct Item 
 { 
     int data; 
@@ -11,7 +9,7 @@ struct Item
 }; 
   
 // Function to create newItem in a linkedlist 
-// HELP FROM: 
+// HELP FROM: https://www.geeksforgeeks.org/merge-two-sorted-lists-place/
 Item *newItem(int key) 
 { 
     struct Item *temp = new Item; 
@@ -21,7 +19,7 @@ Item *newItem(int key)
 } 
   
 // A utility function to print linked list 
-// HELP FROM: 
+// HELP FROM: https://www.geeksforgeeks.org/merge-two-sorted-lists-place/
 void printList(Item *Item) 
 { 
     while (Item != NULL) 
@@ -32,7 +30,7 @@ void printList(Item *Item)
 } 
   
 // Merges two given lists in-place recursively. 
-// This function mainly compares head Items and calls mergeUtil() 
+// This function compares the head(1,2) Items and merges them using mergeUtil() 
 Item *merge(Item *head1, Item *head2) 
 { 
     if (!head1) 
@@ -40,16 +38,14 @@ Item *merge(Item *head1, Item *head2)
     if (!head2) 
         return head1; 
   
-    // start with the linked list 
-    // whose head data is the least 
     if (head1->data < head2->data) 
     { 
-        head1->next = merge(head1->next, head2); 
+        head1->next = merge(head1->next, head2); // merge
         return head1; 
     } 
     else
     { 
-        head2->next = merge(head1, head2->next); 
+        head2->next = merge(head1, head2->next);  // merge
         return head2; 
     } 
 } 

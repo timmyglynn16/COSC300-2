@@ -1,46 +1,67 @@
 Big-O Notation
 
-1. int total = 0;
-    for(int i=0; i<n; i++)
-        for(int j=0; j<n; j++)
-            total += i * j;
+1. int total = 0;               // O(1)
+    for(int i=0; i<n; i++)      // O(n)
+        for(int j=0; j<n; j++)  // O(n)    
+            total += i * j;     // O(1): 1 + (n*n) + 1 = O(n^2)
 
-ANS: Time complexity is O(n), where n is the size of the input
+ANS: Time complexity is O(n^2), where n is the size of the input. Becuase the complexity
+of nested loops is equal to the number of times the innermost loop is executed, this 
+function will take O(n^2) becuase n*n is n^2. 
 
 
-2. int total = 0;
-    for(int i=0; i<n; i++)
-        for(int j=0; j<5; j++)
-            total += i * j;
-ANS: Time complexity is O(n^5), because the complexity of nested loops is
-equal to the number of times the innermost loop is executed. Thus, the innermost
-loop will run 5 times. 
+2. int total = 0;   // O(1)
+    for(int i=0; i<n; i++)      // O(n)
+        for(int j=0; j<5; j++)  // O(1) - because j runs 5 times (not respect to n)
+            total += i * j;     // O(1): 1 + (n*1) + 1 = O(n)
 
-3. int total = 0;
-    for(int i=0; i<n; i++)
-        for(int j=0; j<n; j++)
-            for(int k=0; k<i*j; j++)
-                total += k;
+ANS: Time complexity is O(n), where n is the size of the input. Since the second loop is NOT 
+in respect to n, it is in constant time. Thus the entire loop is in O(n) because 1*n is just n.  
 
-4. int total = 0;
-    int j = 1;
-        for(int i=0; i<n; i++) {
-            j *= 2;
-            for(int k=0; k<j; k++)
-                total++;
+3. int total = 0;                       // O(1)
+    for(int i=0; i<n; i++)              // O(n)
+        for(int j=0; j<n; j++)          // O(n)
+            for(int k=0; k<i*j; j++)    // O(j*i) = O(n*n) = O(n^2)
+                total += k;             // O(1): (1 + n*n*n^2)+ 1) = O(n^4)
+
+ANS: Time complexity is O(n^4). Since the first two loops are in respect to n, they are each O(n).
+The third loop (k), runs in respect to i and j, so the third loop is O(n^2). When doing the analysis
+of the entire code fragment, the complexity is n*n*n^2 which is O(n^4).
+
+EXPONENTIAL!!!
+4. int total = 0;                   // O(1)
+    int j = 1;                      // O(1)
+        for(int i=0; i<n; i++) {    // O(n)
+            j *= 2;                 // O(2^n) 
+            for(int k=0; k<j; k++)  // O(j) = O(n) because k is in respect to j which is n
+                total++;            // O(1): 1 + (n*2^n) = O(n*2^n)
  }
 
-5. int total = 0;
-    int d = 1;
-        for(int i=0; i<n;) {
-            if(d < 0) i++;
-            total += d * i * i;
-            d = -d;
+ ANS: Time complexity is O(n2^n) because we have a for loop that is multiplying our input by 2. This takes
+ exponential time (x^n, where x = 2 because j *= 2). Since there is another for loop with respect to j (n),
+ the time complexity is 2^n *n = O(n2^n). 
+
+5. int total = 0;                   // O(1)
+    int d = 1;                      // O(1)
+        for(int i=0; i<n;) {        // O(n/2) = O(n): because d is negative in line 6... see line 6 explaination
+            if(d < 0) i++;          // O(1): if statements themselves do not affect complexity of loop
+            total += d * i * i;     // O(1)
+            d = -d;                 // d is negative half the time, so one step in the iteration is skipped 
+                                    // everytime the values switch from positive to negative
  }
 
-6. int total = 0;
-    if(n < 0) n = -n;
-        while(n > 0) {
-        n /= 2;
-        total++;
+ ANS: Time complexity O(n) becuase we are working with only one loop in respect to n. However because
+ d is negative in the last line, a step in the iteration is skipped. Therefore it is technically O(n/2),
+ which is the same as O(n). 
+
+LOG!!!
+6. int total = 0;           // O(1)
+    if(n < 0) n = -n;       // O(1): if statement itself does not cost anything, what happens inside does though
+        while(n > 0) {      // O(logn) because it takes logn times to divide by 2 to get to 1
+        n /= 2;             // O(1)
+        total++;            // O(1)
 }
+
+ANS: Time complexity is O(logn) because we are dividing the value of n by 2. Anytime we are dividing our 
+input by 2 (n), we are using the log function. So technically the complexity is log base 2 of n.
+
