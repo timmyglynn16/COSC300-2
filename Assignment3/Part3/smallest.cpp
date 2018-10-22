@@ -3,7 +3,7 @@
 #include <vector>
 
 using namespace std; 
-  
+
 // recursive function 
 int smallest(int a[], int lo, int hi) { 
 
@@ -17,12 +17,12 @@ int smallest(int a[], int lo, int hi) {
     if(min_left < min_right)
     return min_left;
 
-    if(min_right < min_left)
+    if(min_right < min_left) 
     return min_right; */ 
 
-    if (lo >= hi -1) {
-        return lo;
-    }
+    if (lo >= hi -1) { 
+        return lo; 
+    } 
 
     else {
         int newLo = smallest(a, lo + 1, hi);
