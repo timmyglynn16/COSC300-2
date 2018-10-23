@@ -22,8 +22,9 @@ class PQbinary
 
     // declare functions
     private:
-        int heap[];
-        //vector <int> heap;
+        //int heap[];
+        vector <int> vec;
+        int* heap = vec.data();
         int left(int parent);
         int right(int parent);
         int parent(int child);
@@ -35,12 +36,12 @@ class PQbinary
         {}
         void Insert(int element);
         void DeleteMin();
-        int ExtractMin();
+        int Min();
         void DisplayHeap();
         int Size();
 };
 
-/*
+/* 
  * Return Heap Size
  */
 int PQbinary::Size()
@@ -73,15 +74,16 @@ void PQbinary::DeleteMin()
 }
  
 /*
- * Extract Minimum Element
+ * Return Minimum Key
  */
-int PQbinary::ExtractMin()
+int PQbinary::Min()
 {
     if (heap.size() == 0)
     {
         return -1;
     }
     else
+        // front = vector library 
         return heap.front();
 }
  
@@ -90,6 +92,7 @@ int PQbinary::ExtractMin()
  */
 void PQbinary::DisplayHeap()
 {
+    // begin = vector library
     vector <int>::iterator pos = heap.begin();
     cout<<"Heap -->  ";
     while (pos != heap.end())
@@ -112,7 +115,7 @@ int PQbinary::left(int parent)
         return -1;
 }
  
-/*
+/* 
  * Return Right Child
  */
 int PQbinary::right(int parent)
@@ -150,7 +153,7 @@ void PQbinary::heapifyup(int in)
     }
 }
  
-/*
+/* 
  * Heapify- Maintain Heap Structure top down
  */
 void PQbinary::heapifydown(int in)
@@ -202,12 +205,12 @@ int main()
             break;
         case 3:
             cout<<"Minimum Element: ";
-            if (h.ExtractMin() == -1)
+            if (h.Min() == -1)
             {
                 cout<<"Heap is Empty"<<endl;
             }
             else
-                cout<<"Minimum Element:  "<<h.ExtractMin()<<endl;
+                cout<<"Minimum Element:  "<<h.Min()<<endl;
             break;
         case 4:
             cout<<"Displaying elements of Hwap:  ";
