@@ -14,6 +14,8 @@
 #include <cstdlib>
 #include <vector>
 #include <iterator>
+#include <climits> 
+#include <stack>
 using namespace std;
 
 
@@ -28,8 +30,8 @@ class PQbinary
         int left(int parent);
         int right(int parent);
         int parent(int child);
-        void heapifyup(int index);
-        void heapifydown(int index);
+        void swim(int index);
+        void sink(int index);
     
     public:
         PQbinary()
@@ -46,7 +48,7 @@ class PQbinary
  */
 int PQbinary::Size()
 {
-    return heap.size();
+    return sizeof(heap);
 }
  
 /*
@@ -54,22 +56,22 @@ int PQbinary::Size()
  */
 void PQbinary::Insert(int element)
 {
-    heap.push_back(element);
-    heapifyup(heap.size() -1);
+    heap.push(element);
+    swim(sizeof(heap) -1);
 }
 /*
  * Delete Minimum Element
  */
 void PQbinary::DeleteMin()
 {
-    if (heap.size() == 0)
+    if (sizeof(heap) == 0)
     {
         cout<<"Heap is Empty"<<endl;
         return;
     }
-    heap[0] = heap.at(heap.size() - 1);
-    heap.pop_back();
-    heapifydown(0);
+    heap[0] = heap.at(sizeof(heap) - 1);
+    heap.pop();
+    sink(0);
     cout<<"Element Deleted"<<endl;
 }
  
@@ -78,14 +80,35 @@ void PQbinary::DeleteMin()
  */
 int PQbinary::Min()
 {
-    if (heap.size() == 0)
+    if (sizeof(heap) <= 0) 
+        return INT_MAX; 
+    if (sizeof(heap) == 1) 
+    { 
+        sizeof(heap)--; 
+        return heap[0]; 
+    } 
+  
+    // Store the minimum value, and remove it from heap 
+    int root = heap[0]; 
+    heap[0] = heap[sizeof(heap)-1]; 
+    sizeof(heap)--; 
+    swim(0); 
+    sink(0);
+  
+    return heap[0]; 
+
+    /*
+    if (sizeof(heap) == 0)
     {
         return -1;
     }
     else
-        // front = vector library 
-        return heap.front();
-}
+
+        return heap[0];
+        //return heap.front();
+
+    */
+} 
  
 /*
  * Display Heap
@@ -109,7 +132,7 @@ void PQbinary::DisplayHeap()
 int PQbinary::left(int parent)
 {
     int l = 2 * parent + 1;
-    if (l < heap.size())
+    if (l < sizeof(heap))
         return l;
     else
         return -1;
@@ -121,7 +144,7 @@ int PQbinary::left(int parent)
 int PQbinary::right(int parent)
 {
     int r = 2 * parent + 2;
-    if (r < heap.size())
+    if (r < sizeof(heap))
         return r;
     else
         return -1;
@@ -131,32 +154,32 @@ int PQbinary::right(int parent)
  * Return Parent
  */
 int PQbinary::parent(int child)
-{
+{ 
     int p = (child - 1)/2;
     if (child == 0)
         return -1;
     else
         return p;
-}
+} 
  
 /*
  * Heapify- Maintain Heap Structure bottom up
  */
-void PQbinary::heapifyup(int in)
+void PQbinary::swim(int in)
 {
     if (in >= 0 && parent(in) >= 0 && heap[parent(in)] > heap[in])
     {
         int temp = heap[in];
         heap[in] = heap[parent(in)];
         heap[parent(in)] = temp;
-        heapifyup(parent(in));
+        swim(parent(in));
     }
 }
  
 /* 
  * Heapify- Maintain Heap Structure top down
  */
-void PQbinary::heapifydown(int in)
+void PQbinary::sink(int in)
 {
  
     int child = left(in);
@@ -170,7 +193,7 @@ void PQbinary::heapifydown(int in)
         int temp = heap[in];
         heap[in] = heap[child];
         heap[child] = temp;
-        heapifydown(child);
+        sink(child);
     }
 }
  
