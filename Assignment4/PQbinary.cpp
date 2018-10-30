@@ -9,200 +9,136 @@
 // Min Heap:
 // the key at root must be minimum to all other keys in the binary heap
 // the value of each node is >= the value of its parent (min at root)
-
+#include <string>
 #include <iostream>
-#include <cstdlib>
-#include <vector>
-#include <iterator>
-#include <climits> 
-#include <stack>
-using namespace std;
+using namespace std; 
 
+class BinaryMinHeap {
 
-class PQbinary
-{
+private:
 
-    // declare functions
-    private:
-        //int heap[];
-        vector <int> vec;
-        int* heap = vec.data();
-        int left(int parent);
-        int right(int parent);
-        int parent(int child);
-        void swim(int index);
-        void sink(int index);
-    
-    public:
-        PQbinary()
-        {}
-        void Insert(int element);
-        void DeleteMin();
-        int Min();
-        void DisplayHeap();
-        int Size();
-};
+      int *data;
+      int heapSize;
+      int arraySize;
+      
+      int leftchild(int nodeIndex) {return 2 * nodeIndex + 1;}
+      int rightchild(int nodeIndex) {return 2 * nodeIndex + 2;}
+      int parent(int nodeIndex) {return (nodeIndex - 1) / 2;}
 
-/* 
- * Return Heap Size
- */
-int PQbinary::Size()
-{
-    return sizeof(heap);
-}
  
-/*
- * Insert Element into a Heap
- */
-void PQbinary::Insert(int element)
-{
-    heap.push(element);
-    swim(sizeof(heap) -1);
+
+public:
+
+      BinaryMinHeap(int size) {
+            data = new int[size];
+            heapSize = 0;
+            arraySize = size;
+      }    
+
+      int getMinimum() {
+            if (isEmpty())
+                  throw string("Heap is empty");
+            else
+                  return data[0];
+      }
+
+      bool isEmpty() {
+            return (heapSize == 0);
+      }
+
+      ~BinaryMinHeap() {
+            delete[] data;
+      }
+
+
+// compare to the parent 
+void BinaryMinHeap::swim(int nodeIndex) {
+
+      int parentIndex, tmp;
+
+      if (nodeIndex != 0) {
+            parentIndex = parent(nodeIndex);
+            if (data[parentIndex] > data[nodeIndex]) {
+                  tmp = data[parentIndex];
+                  data[parentIndex] = data[nodeIndex];
+                  data[nodeIndex] = tmp;
+                  swim(parentIndex);
+            }
+      }
 }
-/*
- * Delete Minimum Element
- */
-void PQbinary::DeleteMin()
-{
-    if (sizeof(heap) == 0)
-    {
-        cout<<"Heap is Empty"<<endl;
-        return;
-    }
-    heap[0] = heap.at(sizeof(heap) - 1);
-    heap.pop();
-    sink(0);
-    cout<<"Element Deleted"<<endl;
+
+ 
+
+void BinaryMinHeap::insert(int value) {
+
+      if (heapSize == arraySize)
+            throw std::string("Heap's underlying storage is overflow");
+            //throw string("Heap's underlying storage is overflow");
+      else {
+            heapSize++;
+            data[heapSize - 1] = value;
+            swim(heapSize - 1);
+      }
 }
+
+void BinaryMinHeap::sink(int nodeIndex) {
+
+      int leftChildIndex, rightChildIndex, minIndex, tmp;
+
+      leftChildIndex = leftchild(nodeIndex);
+      rightChildIndex = rightchild(nodeIndex);
+
+      if (rightChildIndex >= heapSize) {
+            if (leftChildIndex >= heapSize)
+                  return;
+            else
+                  minIndex = leftChildIndex;
+      } else {
+            if (data[leftChildIndex] <= data[rightChildIndex])
+                  minIndex = leftChildIndex;
+            else
+                  minIndex = rightChildIndex;
+      }
+
+      if (data[nodeIndex] > data[minIndex]) {
+            tmp = data[minIndex];
+            data[minIndex] = data[nodeIndex];
+            data[nodeIndex] = tmp;
+            sink(minIndex);
+      }
+}
+
  
-/*
- * Return Minimum Key
- */
-int PQbinary::Min()
+
+void BinaryMinHeap::delMin() {
+
+      if (isEmpty())
+            throw string("Heap is empty");
+      else {
+            data[0] = data[heapSize - 1];
+            heapSize--;
+            if (heapSize > 0)
+                  sink(0);
+      }
+}
+
+void BinaryMinHeap::DisplayHeap()
 {
-    if (sizeof(heap) <= 0) 
-        return INT_MAX; 
-    if (sizeof(heap) == 1) 
-    { 
-        sizeof(heap)--; 
-        return heap[0]; 
-    } 
-  
-    // Store the minimum value, and remove it from heap 
-    int root = heap[0]; 
-    heap[0] = heap[sizeof(heap)-1]; 
-    sizeof(heap)--; 
-    swim(0); 
-    sink(0);
-  
-    return heap[0]; 
-
-    /*
-    if (sizeof(heap) == 0)
-    {
-        return -1;
-    }
-    else
-
-        return heap[0];
-        //return heap.front();
-
-    */
-} 
- 
-/*
- * Display Heap
- */
-void PQbinary::DisplayHeap()
-{
-    // begin = vector library
-    vector <int>::iterator pos = heap.begin();
+    int* pos = &data[0];
     cout<<"Heap -->  ";
-    while (pos != heap.end())
+    while (*pos != data[0])
     {
         cout<<*pos<<" ";
         pos++;
     }
     cout<<endl;
 }
- 
-/*
- * Return Left Child
- */
-int PQbinary::left(int parent)
-{
-    int l = 2 * parent + 1;
-    if (l < sizeof(heap))
-        return l;
-    else
-        return -1;
-}
- 
-/* 
- * Return Right Child
- */
-int PQbinary::right(int parent)
-{
-    int r = 2 * parent + 2;
-    if (r < sizeof(heap))
-        return r;
-    else
-        return -1;
-}
- 
-/*
- * Return Parent
- */
-int PQbinary::parent(int child)
-{ 
-    int p = (child - 1)/2;
-    if (child == 0)
-        return -1;
-    else
-        return p;
-} 
- 
-/*
- * Heapify- Maintain Heap Structure bottom up
- */
-void PQbinary::swim(int in)
-{
-    if (in >= 0 && parent(in) >= 0 && heap[parent(in)] > heap[in])
-    {
-        int temp = heap[in];
-        heap[in] = heap[parent(in)];
-        heap[parent(in)] = temp;
-        swim(parent(in));
-    }
-}
- 
-/* 
- * Heapify- Maintain Heap Structure top down
- */
-void PQbinary::sink(int in)
-{
- 
-    int child = left(in);
-    int child1 = right(in);
-    if (child >= 0 && child1 >= 0 && heap[child] > heap[child1])
-    {
-       child = child1;
-    }
-    if (child > 0 && heap[in] > heap[child])
-    {
-        int temp = heap[in];
-        heap[in] = heap[child];
-        heap[child] = temp;
-        sink(child);
-    }
-}
- 
-/*
- * Main Contains Menu
- */
-int main()
-{
-    PQbinary h;
+
+
+};
+
+int main() {
+    BinaryMinHeap h(20);
     while (1)
     {
         cout<<"------------------"<<endl;
@@ -221,22 +157,22 @@ int main()
         case 1:
             cout<<"Enter the element to be inserted: ";
             cin>>element;
-            h.Insert(element);
+            h.insert(element);
             break;
         case 2:
-            h.DeleteMin();
+            h.delMin();
             break;
         case 3:
             cout<<"Minimum Element: ";
-            if (h.Min() == -1)
+            if (h.getMinimum() == -1)
             {
                 cout<<"Heap is Empty"<<endl;
             }
             else
-                cout<<"Minimum Element:  "<<h.Min()<<endl;
+                cout<<"Minimum Element:  "<<h.getMinimum()<<endl;
             break;
         case 4:
-            cout<<"Displaying elements of Hwap:  ";
+            cout<<"Displaying elements of the heap:  ";
             h.DisplayHeap();
             break;
         case 5:
@@ -247,11 +183,4 @@ int main()
     }
     return 0;
 }
-
-
-
-
-
-
-
 
