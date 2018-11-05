@@ -1,21 +1,25 @@
-/*
- * C++ Program to Implement Binary Heap
- */
+// binary arr = complete binary tree 
+//  - all levels are filled 
+//  - last level has all keys as left as possible 
+// root element: array[0]
+// parent node: array[(i-1)/2]
+// left child node: array[(2*i)+1]
+// right child node: array[(2*i)+2]
+
+// Max arr:
+// the key at root must be maximum to all other keys in the binary arr
+// the value of each node is <= the value of its parent (max at root)
 #include <iostream>
 #include <cstdlib>
 #include <vector>
 #include <iterator>
 using namespace std;
-/*
- * Class Declaration
- */
+
 class BinaryHeap
 {
     private:
-        //vector <int> heap;
-
-        int *data;
-        int heapSize;
+        int *arr;
+        int arrSize;
         int arraySize;
 
         int left(int parent);
@@ -23,67 +27,46 @@ class BinaryHeap
         int parent(int child);
         void swim(int index);
         void sink(int index);
+
     public:
-    int dataIndex = 0;
+    int arrIndex = 0;
         BinaryHeap(int size) {
             
-            data = new int[size];
-            heapSize = 0;
+            arr = new int[size];
+            arrSize = 0;
             arraySize = size;
         }
         void Insert(int element);
         int DeleteMax();
-        int ExtractMin();
-        void DisplayHeap();
+        void Displayarr();
         int Size();
 };
-/*
- * Return array Size
- */
+
+// return size of the array
 int BinaryHeap::Size()
 {
     return arraySize;
-    //return heap.size();
 }
  
-/*
- * Insert Element into array
- */
+// insert element into the array
 void BinaryHeap::Insert(int element)
 {
     //insert into array (not vecotr)
-    if(dataIndex != arraySize){
-        data[dataIndex] = element;
-        swim(dataIndex);
-        dataIndex++;
+    if(arrIndex != arraySize){
+        arr[arrIndex] = element;
+        swim(arrIndex);
+        arrIndex++;
     }
-    
-
-    /*
-    heap.push_back(element);
-    swim(heap.size() -1); */
 }
 
-/*
- * Delete Maximum Element
- */
+// delete maximum element from array
 int BinaryHeap::DeleteMax()
 {
-    /*
-    if (heap.size() == 0)
-    {
-        cout<<"Heap is Empty"<<endl;
-        return;
-    }
-    heap[0] = heap.at(heap.size() - 1);
-    heap.pop_back();
-    sink(0);
-    cout<<"Element Deleted"<<endl; */
 
     // do it using array!!!
     // save whatever is at index 0
     // set the root = 0
-    // for loop that goes through each index of array and calls swim on each index (dec dataIndex)
+    // for loop that goes through each index of array and calls swim on each index (dec arrIndex)
 
     if(arraySize == 0) {
         cout<< "Error, empty";
@@ -91,8 +74,8 @@ int BinaryHeap::DeleteMax()
     }
 
     int max = 0;
-    max = data[0];
-    data[0] = 0;
+    max = arr[0];
+    arr[0] = 0;
 
     sink(0);
 
@@ -100,46 +83,16 @@ int BinaryHeap::DeleteMax()
         swim(i);
     }
 
-    dataIndex--;
+    arrIndex--;
     return max;
-
-
-
 
 }
  
-/*
- * Extract Minimum Element
- */
-
-/*
-int BinaryHeap::ExtractMin()
+// print the array
+void BinaryHeap::Displayarr()
 {
-    if (heap.size() == 0)
-    {
-        return -1;
-    }
-    else
-        return heap.front();
-} */
- 
-/*
- * Display Heap
- */
-void BinaryHeap::DisplayHeap()
-{
-    /*
-    vector <int>::iterator pos = heap.begin();
-    cout<<"Heap -->  ";
-    while (pos != heap.end())
-    {
-        cout<<*pos<<" ";
-        pos++;
-    }
-    cout<<endl; */
-
     for(int i=0; i< arraySize; i++){
-        cout<< data[i] << ",";
+        cout<< arr[i] << ",";
     }
     cout << endl;
 }
@@ -183,62 +136,61 @@ int BinaryHeap::parent(int child)
 }
  
 /*
- * Heapify- Maintain Heap Structure bottom up
+ * arrify- Maintain arr Structure bottom up
  */
 void BinaryHeap::swim(int in)
 {
-    if (in >= 0 && parent(in) >= 0 && data[parent(in)] < data[in])
+    if (in >= 0 && parent(in) >= 0 && arr[parent(in)] < arr[in])
     {
-        int temp = data[in];
-        data[in] =data[parent(in)];
-        data[parent(in)] = temp;
+        int temp = arr[in];
+        arr[in] =arr[parent(in)];
+        arr[parent(in)] = temp;
         swim(parent(in));
     }
 }
  
 /*
- * Heapify- Maintain Heap Structure top down
+ * arrify- Maintain arr Structure top down
  */
 
 void BinaryHeap::sink(int in)
 {
- 
-    int lchild = left(in);
-    int rchild = right(in);
-
-    if(rchild >= dataIndex ||  rchild == -1) {
-        int temp = data[in];
-        data[in] = data[dataIndex - 1];
-        data[dataIndex -1] = temp;
-    }
-    
-
-    else {
-        int temp = data[in];
-        data[in] = data[rchild];
-        data[rchild] = temp;
-        sink(rchild);
-    }
-    
-
+    // NO!!!!!!!!!!!!!!!! - retry
     /*
-    if (lchild >= 0 && rchild >= 0 && data[lchild] > data[rchild])
+    if (lchild >= 0 && rchild >= 0 && arr[lchild] > arr[rchild])
     {
        lchild = rchild
 ;
     }
-    if (lchild > 0 && data[in] > data[lchild])
+    if (lchild > 0 && arr[in] > arr[lchild])
     {
-        int temp = data[in];
-        data[in] = data[lchild];
-        data[lchild] = temp;
+        int temp = arr[in];
+        arr[in] = arr[lchild];
+        arr[lchild] = temp;
         sink(lchild);
     } */
+
+        int lchild = left(in);
+    int rchild = right(in);
+
+    // have 0's end up at the end of the array (not just bottom of arr)
+    // do it by moving as far right in the arr as possible 
+    // if right child is ever >= what the next spot is, we need to move 0 to the space before index
+    if(rchild >= arrIndex ||  rchild == -1) {
+        int temp = arr[in];
+        arr[in] = arr[arrIndex - 1];
+        arr[arrIndex -1] = temp;
+    }
+    
+    // if the right child is not over stepping where index is sitting, move 0 there 
+    else {
+        int temp = arr[in];
+        arr[in] = arr[rchild];
+        arr[rchild] = temp;
+        sink(rchild);
+    }
 } 
- 
-/*
- * Main Contains Menu
- */
+
 int main()
 {
     
@@ -246,12 +198,11 @@ int main()
     while (1)
     {
         cout<<"------------------"<<endl;
-        cout<<"Operations on Heap"<<endl;
+        cout<<"Operations on arr"<<endl;
         cout<<"------------------"<<endl;
         cout<<"1.Insert Element"<<endl;
         cout<<"2.Delete Maximum Element"<<endl;
-        //cout<<"3.Extract Minimum Element"<<endl;
-        cout<<"3.Print Heap"<<endl;
+        cout<<"3.Print array"<<endl;
         cout<<"4.Exit"<<endl;
         int choice, element;
         cout<<"Enter your choice: ";
@@ -266,18 +217,9 @@ int main()
         case 2:
             h.DeleteMax();
             break;
-        /*case 3:
-            cout<<"Minimum Element: ";
-            if (h.ExtractMin() == -1)
-            {
-                cout<<"Heap is Empty"<<endl;
-            }
-            else
-                cout<<"Minimum Element:  "<<h.ExtractMin()<<endl;
-            break;  */
         case 3:
-            cout<<"Displaying elements of Heap:  ";
-            h.DisplayHeap();
+            cout<<"Displaying elements of arr:  ";
+            h.Displayarr();
             break;
         case 4:
             exit(1);
