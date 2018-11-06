@@ -25,5 +25,6 @@
         "typeinfo": "cpp",
         "iomanip": "cpp",
         "iterator": "cpp"
-    }
+    },
+    "C_Cpp.intelliSenseEngineFallback": "Disabled"
 }
