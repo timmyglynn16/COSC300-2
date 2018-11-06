@@ -32,11 +32,13 @@ class binomialheap
      * create a binomial queue/tree node
      * 
      */
-	node *createnode(int  key)
+	node *createnode(int key)
 	{
 		node *root;
 		root=new node;
-		root->child=root->sibling=root->parent=NULL;
+		root->child=NULL;
+		root->sibling=NULL;
+		root->parent=NULL;
 		root->degree=0;
 		root->data=key;
 	}
@@ -196,6 +198,22 @@ class binomialheap
 			root1=root1->sibling;
 		root1->sibling=root2;
 	}
+
+    /**
+     * print the heap
+     */
+    void DisplayHeap()
+    {
+    int* pos = &data[0];
+    cout<<"Heap -->  ";
+    while (*pos != data[0])
+    {
+        cout<<*pos<<" ";
+        pos++;
+    }
+    cout<<endl;
+    }
+    /* whats wrong here? ^^^^ */
 	
 	node *extractmin()
 	{
