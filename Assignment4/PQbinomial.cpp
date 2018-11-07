@@ -201,7 +201,7 @@ class binomialheap
 
     /**
      * print the heap
-     */
+     *
     void DisplayHeap()
     {
     int* pos = &data[0];
