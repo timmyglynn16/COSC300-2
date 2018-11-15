@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include<stdlib.h>
 #include<climits>
@@ -34,9 +33,9 @@ class binomialheap
      */
 	node *createnode(int key)
 	{
-		node *root;
+		node *root; //root node 
 		root=new node;
-		root->child=NULL;
+		root->child=NULL; 
 		root->sibling=NULL;
 		root->parent=NULL;
 		root->degree=0;
@@ -45,7 +44,7 @@ class binomialheap
 	
 	void insert(node *root)
 	{
-		head=merge(head, root);
+		head=merge(head, root); 
 		cout<<"CP1"<<endl;
 		head=align(head);
 		cout<<"CP2"<<endl;
