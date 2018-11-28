@@ -195,6 +195,27 @@ int main()
 {
     
     BinaryHeap h(6);
+    int element;
+
+    /*
+    while(1){
+        // enter your data
+        cout<<"Enter the element to be inserted: ";
+        cin>>element;
+        h.Insert(element); 
+
+        // delete the max
+        h.DeleteMax();
+
+        // print the array
+        cout<<"Displaying elements of arr:  ";
+        h.Displayarr();   
+    }
+    return 0; */
+
+    
+
+    
     while (1)
     {
         cout<<"------------------"<<endl;
@@ -227,5 +248,5 @@ int main()
             cout<<"Enter Correct Choice"<<endl;
         }
     } 
-    return 0;
+    return 0; 
 }
