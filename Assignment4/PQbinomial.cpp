@@ -199,10 +199,12 @@ class binomialheap
 	}
 
     /**
-     * print the heap
-     *
+     * print the heap 
+     
     void DisplayHeap()
     {
+
+    cout << endl;
     int* pos = &data[0];
     cout<<"Heap -->  ";
     while (*pos != data[0])
@@ -211,8 +213,7 @@ class binomialheap
         pos++;
     }
     cout<<endl;
-    }
-    /* whats wrong here? ^^^^ */
+    } */
 	
 	node *extractmin()
 	{
@@ -334,81 +335,41 @@ int main()
 	int x;
 	ch='1';
 
-	/*
 	// enter size of the first heap
 	cout << endl << "Enter the size of your heap ";
 	cin >> size;
 
 
+	// make heap 1
 	// insert data 
+	for(i = 0; i < size; i++) {
+		cout << endl << "Enter your data for heap 1: ";
+		cin >> x;
+		root = bh.createnode(x);
+		bh.insert(root);
+	}
+
+	// print heap 1
+	cout << "The first heap is: ";
 	for(i = 0; i < size; i++){
-	cout << endl << "Enter your data: ";
-	cin >> x;
-	root = bh.createnode(x);
-	bh.insert(root);
+		cout << bh.insert(root);
 	}
 
-	// print the mininum value
-	x=bh.printmin();
-	if(x==INT_MAX)
-		cout<<"Empty"<<endl;
-	else 
-		cout<<endl<<x<<endl;
-
-	// print the head node
-	x=bh.printheadnode();		
-	if(x==INT_MAX)
-		cout<<"Empty"<<endl;
-	else 
-		cout<<endl<<x<<endl;
-
-	// merge the binomial heaps
-
-
-	
-	// extract minimum value
-	root=bh.extractmin();
-	if(!root)
-		cout<<endl<<"empty"<<endl;
-	else 
-		cout<<endl<<root->data<<endl;
-
-	// delete inputted key
-	cout<<endl<<"Enter key to be deleted\t";
-	cin>>x;
-	if(!bh.found(bh.head, x))
-		cout<<endl<<"Not found"<<endl;
-	else
-		bh.extractmin();
-
-	// decrease inputted key
-	cout<<endl<<"Enter key to be decreased\t";
-	cin>>x;
-	if(!bh.search(bh.head, x, root))
-		cout<<endl<<"Not found"<<endl;
-	else {
-		cout<<"Enter data to replaced\t";
-		for(i = 0; i < size; i++){
-		cin>>x;
-		cout<<endl;
-		root->data=x;
+	// make heap 2
+	// insert data 
+	for(i = 0; i < size; i++) {
+		cout << endl << "Enter your data for heap 1: ";
+		cin >> x;
+		root = bh1.createnode(x);
+		bh1.insert(root);
 	}
 
-	while(root->parent && root->data<root->parent->data) {
-		x=root->data;
-		root->data=root->parent->data;
-		root->parent->data=x;
-		root=root->parent;
-		}
-		while(root->child && root->child->data<root->data) {
-			x=root->data;
-			root->data=root->child->data;
-			root->child->data=x;
-			root=root->child;
-		}
-	} */	
+	// merge the heaps
+	bh.insert(bh1.head);	
 
 
+
+	/*
 	while(ch!='0')
 	{
 		cout<<"Enter your choice"<<endl;
@@ -546,5 +507,5 @@ int main()
 				cout<<endl<<"Invalid input"<<endl;
 		}
 	}
-	return 0; 
+	return 0;  */
 }

@@ -14,6 +14,7 @@
 //#include <vector>
 #include <iterator>
 using namespace std;
+#include <chrono>  // for high_resolution_clock
 
 class BinaryHeap
 {
@@ -194,28 +195,47 @@ void BinaryHeap::sink(int in)
 int main()
 {
     
-    BinaryHeap h(6);
+    int size;
+    cout << "Enter the size of your arr:";
+    cin >> size;
+    BinaryHeap h(size);
     int element;
 
-    /*
-    while(1){
+    // Record start time
+    auto start = std::chrono::high_resolution_clock::now();
+    
+    for(int i =0; i < size; i++){
         // enter your data
-        cout<<"Enter the element to be inserted: ";
+        cout << "Insert element " << i << " into the array: ";
         cin>>element;
         h.Insert(element); 
+    }
+    
+    //print the array
+    cout<<"Displaying elements of arr before deletion:  ";
+    h.Displayarr();   
 
-        // delete the max
+    // delete the max
+    for(int i =0; i < size; i++){
+        cout << "Deleting max... ";
         h.DeleteMax();
 
         // print the array
         cout<<"Displaying elements of arr:  ";
-        h.Displayarr();   
+        h.Displayarr(); 
     }
-    return 0; */
 
-    
+    // Record end time
+    auto finish = std::chrono::high_resolution_clock::now();
 
+    std::chrono::duration<double> elapsed = finish - start;
+    std::cout << "Elapsed time: " << elapsed.count() << " s\n";
+
+  
     
+// BAD IMPLEMENTATION FOR CALCULATING RUN TIME 
+
+/*
     while (1)
     {
         cout<<"------------------"<<endl;
@@ -248,5 +268,5 @@ int main()
             cout<<"Enter Correct Choice"<<endl;
         }
     } 
-    return 0; 
+    return 0;  */
 }

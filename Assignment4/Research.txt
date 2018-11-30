@@ -1,0 +1,14 @@
+A heap is a specific tree based data structure in which all the nodes of tree are in a specific order. 
+A binary heap is a complete binary tree which satisfies the heap ordering property (min or max ordering).
+I used a max binary heap, meaning the value of each node is less than or equal to the value of its parent, 
+with the maximum-value element at the root. On the other hand, A binomial queue is a collection (or forest) of. 
+heap-ordered trees where each tree has a defined structure and capacity and each tree has the familiar heap-order property.
+Binomial queues are designed to be merged quickly with one another.
+
+In this case, binary heap is much more efficient when using priority queue operations. Here are some examples why...
+1. since binary heap is using array implementation, operations are much more cache friendly
+2. binary heap does NOT require extra space for pointers
+3. binary heap is much easier to implement than binomial queue (clearly shown in this assignment)
+
+
+
