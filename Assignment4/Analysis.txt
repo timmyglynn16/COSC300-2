@@ -1,0 +1,185 @@
+ALGORITHM ANALYSIS:
+Notes: 
+    I took out the display functions because I wanted to get an accurate rep of what the actual
+    algorithms are doing as oppose to clocking the time of the program. I copied an example of printed
+    ouput for each program to show that the programs are doing what theyre suppose to!...
+
+Binary Heap:
+*EXAMPLE OUTPUT TO SHOW FUNCTIONALITY*
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ g++ PQbinary.cpp -o run
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ ./run
+    Enter the size of your arr:6
+    Insert element 0 into the array: 21
+    Insert element 1 into the array: 32
+    Insert element 2 into the array: 5
+    Insert element 3 into the array: 65
+    Insert element 4 into the array: 13
+    Insert element 5 into the array: 88
+    Displaying elements of arr before deletion:  88,32,65,21,13,5,
+    Deleting max...Displaying elements of new arr :  65,32,5,21,13,0,
+    Deleting max...Displaying elements of new arr :  32,21,13,5,0,0,
+    Deleting max...Displaying elements of new arr :  21,13,5,0,0,0,
+    Deleting max...Displaying elements of new arr :  13,5,0,0,0,0,
+    Deleting max...Displaying elements of new arr :  5,0,0,0,0,0,
+    Deleting max...Displaying elements of new arr :  0,0,0,0,0,0,
+    Elapsed time: 7.81322 s
+************************************************************************************
+
+TESTING
+
+*SMALL ARRAY, INPUT SMALL INTEGERS*
+TEST 1:
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ g++ PQbinary.cpp -o run
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ ./run
+    Enter the size of your arr:6
+    Insert element 0 into the array: 21
+    Insert element 1 into the array: 12
+    Insert element 2 into the array: 33
+    Insert element 3 into the array: 4
+    Insert element 4 into the array: 53
+    Insert element 5 into the array: 6
+    Elapsed time: 7.56851 s
+
+TEST 2:
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ g++ PQbinary.cpp -o run
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ ./run
+    Enter the size of your arr:6
+    Insert element 0 into the array: 44
+    Insert element 1 into the array: 56
+    Insert element 2 into the array: 14
+    Insert element 3 into the array: 76
+    Insert element 4 into the array: 89
+    Insert element 5 into the array: 23
+    Elapsed time: 6.74519 s
+
+TEST 3:
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ g++ PQbinary.cpp -o run
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ ./run
+    Enter the size of your arr:6
+    Insert element 0 into the array: 55
+    Insert element 1 into the array: 643
+    Insert element 2 into the array: 7
+    Insert element 3 into the array: 234
+    Insert element 4 into the array: 24
+    Insert element 5 into the array: 12
+    Elapsed time: 5.6242 s
+
+AVERAGE RUN TIME OF TESTS:
+6.6525 s
+
+
+*SMALL ARRAY, INPUT LARGE NUMBERS*
+TEST 1:
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ g++ PQbinary.cpp -o run
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ ./run
+    Enter the size of your arr:6
+    Insert element 0 into the array: 435463542
+    Insert element 1 into the array: 32564372
+    Insert element 2 into the array: 23573622
+    Insert element 3 into the array: 1352576732
+    Insert element 4 into the array: 1342565342
+    Insert element 5 into the array: 1345245426
+    Elapsed time: 9.48854 s
+
+TEST 2:
+   tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ g++ PQbinary.cpp -o run
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ ./run
+    Enter the size of your arr:6
+    Insert element 0 into the array: 25452351
+    Insert element 1 into the array: 324543632
+    Insert element 2 into the array: 13454362
+    Insert element 3 into the array: 876496473
+    Insert element 4 into the array: 42565473
+    Insert element 5 into the array: 245678352
+    Elapsed time: 7.60777 s
+
+TEST 3:
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ g++ PQbinary.cpp -o run
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ ./run
+    Enter the size of your arr:6
+    Insert element 0 into the array: 5462311
+    Insert element 1 into the array: 34624572
+    Insert element 2 into the array: 47853832
+    Insert element 3 into the array: 3246521
+    Insert element 4 into the array: 13464724
+    Insert element 5 into the array: 13874  
+    Elapsed time: 11.1765 s
+
+AVERAGE RUN TIME OF TESTS:
+9.4242 s
+
+
+*SMALL ARRAY, GENERATED LARGE RANDOM INTS*
+TEST 1:
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ g++ PQbinary.cpp -o run
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ ./run
+    Enter the size of your arr:6
+    Elapsed time: 9.511e-06 s
+
+TEST 2:
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ g++ PQbinary.cpp -o run
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ ./run
+    Enter the size of your arr:6
+    Elapsed time: 6.335e-06 s
+
+TEST 3:
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ g++ PQbinary.cpp -o run
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ ./run
+    Enter the size of your arr:6
+    Elapsed time: 1.864e-06 s
+
+AVERAGE RUN TIME OF TESTS:
+5.903e-06 s
+
+
+*LARGE ARRAY, GENERATED LARGE RANDOM INTS*
+TEST 1:
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ g++ PQbinary.cpp -o run
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ ./run
+    Enter the size of your arr:67354  
+    Elapsed time: 64.7471 s
+
+TEST 2:
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ g++ PQbinary.cpp -o run
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ ./run
+    Enter the size of your arr:24278
+    Elapsed time: 8.69628 s
+
+TEST 3:
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ g++ PQbinary.cpp -o run
+    tglynn@tglynn-MacBookPro:~/COSC300/Assignment4$ ./run
+    Enter the size of your arr:87655
+    Elapsed time: 124.368 s
+
+AVERARGE RUN TIME OF TESTS:
+N/A... see report paragraph...
+
+    Analysis REPORT:
+        For the most part the tests went well. I noticed that when i would input/generate numbers 
+        larger than a billion, my tests failed. But i could not figure out why. I also tried keeping 
+        the array size of small inputs the same because obviously the times would vary based on array size.
+        However, for the final test (large array, large rand nums), i used multiple size arrays because i wanted
+        to see how much of a difference lets say, 20000 would take compared to 80000. and the time difference
+        was very significant. I also noticed that for the input sections, the times would get smaller as i did more
+        tests. Kind of interesting. It seems as if the program is getting better on its own as it does more work on 
+        the same size array. But theres no certainty of that. It could have just been how quickly i was enterring numbers.
+        But for the generated values i noticed the same thing. For small arrays of the same size, the program seem 
+        to get more efficient as it performed more tasks of similar testing variables. I definitely feel as though 
+        generating random numbers is a more efficient way of testing a program as oppose to user input, but i wanted to 
+        see for myself what the differences were. 
+
+
+Binomial Queue:
+ANALYSIS
+
+Okay, so I've been working on my binomial queue code for about 3 weeks, on and off. I can not figure out how to implement
+my methods properly. I talked with tutors and went over how to make the actual methods, and they all work. 
+I wrote a main method which is very, very user friendly (options/choices/etc) and runs the methods properly, but in terms of 
+writing a main that is organized in a way to test the efficiency of the program is giving me difficulty. I kept the case-based
+functions to show that the program itself works, but i cannot figure out how to implement a more efficient way of using the program. 
+I was also unable to properly print out the heaps like i do with arrays in binary heap, which was ultimately very frustrating. 
+
+
+
+
+

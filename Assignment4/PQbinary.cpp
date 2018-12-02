@@ -196,40 +196,77 @@ int main()
 {
     
     int size;
+    int i;
     cout << "Enter the size of your arr:";
     cin >> size;
     BinaryHeap h(size);
     int element;
 
-    // Record start time
-    auto start = std::chrono::high_resolution_clock::now();
+
+
+    /*random nums */
+    int largeRands;
+     srand (time(NULL));
     
-    for(int i =0; i < size; i++){
+    // Record random insert start time
+    auto insertStart = std::chrono::high_resolution_clock::now();
+    for(i = 0; i < size; i++){
+        largeRands = rand() % 100000 + 1;
+        h.Insert(largeRands); 
+
+    }
+
+    // Record random insert end time
+    auto insertFinish = std::chrono::high_resolution_clock::now();
+    // calcuate random insert total time 
+    std::chrono::duration<double> insertElapsed = insertFinish - insertStart; 
+    
+    
+
+    /* user input integers 
+    
+    // Record input insert start time
+    auto insertStart = std::chrono::high_resolution_clock::now();
+    for(i =0; i < size; i++){
         // enter your data
         cout << "Insert element " << i << " into the array: ";
         cin>>element;
         h.Insert(element); 
     }
     
+    // Record input insert end time
+    auto insertFinish = std::chrono::high_resolution_clock::now();
+    // record input insert total time
+    std::chrono::duration<double> insertElapsed = insertFinish - insertStart;
+    
+    */
+    
     //print the array
-    cout<<"Displaying elements of arr before deletion:  ";
-    h.Displayarr();   
+    //cout<<"Displaying elements of arr before deletion:  ";
+    //h.Displayarr();   
 
     // delete the max
-    for(int i =0; i < size; i++){
-        cout << "Deleting max... ";
+    // Record deleteMax start time
+    auto delStart = std::chrono::high_resolution_clock::now();    
+    for(i =0; i < size; i++){   
         h.DeleteMax();
-
-        // print the array
-        cout<<"Displaying elements of arr:  ";
-        h.Displayarr(); 
+        //print the array
+        //cout<<"Deleting max...Displaying elements of new arr :  ";
+        //h.Displayarr(); 
     }
 
-    // Record end time
-    auto finish = std::chrono::high_resolution_clock::now();
+    // Record delteMax end time
+    auto delFinish = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> delElapsed = delFinish - delStart;
 
-    std::chrono::duration<double> elapsed = finish - start;
-    std::cout << "Elapsed time: " << elapsed.count() << " s\n";
+    
+
+
+
+
+    // calculate run time
+    std::chrono::duration<double> totalElapsed = insertElapsed + delElapsed;
+    std::cout << "Elapsed time: " << totalElapsed.count() << " s\n";
 
   
     

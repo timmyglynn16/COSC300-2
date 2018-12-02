@@ -1,8 +1,11 @@
-A heap is a specific tree based data structure in which all the nodes of tree are in a specific order. 
+What is the best sorting algorithm and why?
+
+A heap is a specific tree-based data structure in which all the nodes of the tree are in a specific order. 
 A binary heap is a complete binary tree which satisfies the heap ordering property (min or max ordering).
 I used a max binary heap, meaning the value of each node is less than or equal to the value of its parent, 
-with the maximum-value element at the root. On the other hand, A binomial queue is a collection (or forest) of. 
-heap-ordered trees where each tree has a defined structure and capacity and each tree has the familiar heap-order property.
+with the maximum-value element at the root of the tre. On the other hand, A binomial queue is a collection 
+(or forest) of heap-ordered trees where each tree has a defined structure and capacity and each tree has 
+the familiar heap-order property.
 Binomial queues are designed to be merged quickly with one another.
 
 In this case, binary heap is much more efficient when using priority queue operations. Here are some examples why...
@@ -10,5 +13,14 @@ In this case, binary heap is much more efficient when using priority queue opera
 2. binary heap does NOT require extra space for pointers
 3. binary heap is much easier to implement than binomial queue (clearly shown in this assignment)
 
+In regards to other applications and implementations, there are other, more efficient sorting methods.
+While the applications of each sorting method depends on the context of the problem itself, it is generally
+agreed upon that mergesort, heapsort, and quicksort are best used for large data/inputs. However, for small inputs
+it is more useful to use insertion sort. The worst case of mergesort and heapsort and the avg case for quicksort all share
+O(nlogn) running times, however the worst case for quicksort (which happens rarely and can be avoided easily) is O(n^2).
+So in my opinion, being that quicksort avg time is the same as other's worst time, and that quicksort is space constant as oppose
+to having limitations like what structure you're using (like in mergesort), i would say...
 
+...quicksort is generally the best and most used sorting algorithm. 
+But like I said, it all depends on the application.  
 

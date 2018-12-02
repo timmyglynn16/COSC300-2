@@ -335,6 +335,8 @@ int main()
 	int x;
 	ch='1';
 
+	/*
+
 	// enter size of the first heap
 	cout << endl << "Enter the size of your heap ";
 	cin >> size;
@@ -352,7 +354,7 @@ int main()
 	// print heap 1
 	cout << "The first heap is: ";
 	for(i = 0; i < size; i++){
-		cout << bh.insert(root);
+		//cout << ;
 	}
 
 	// make heap 2
@@ -367,9 +369,10 @@ int main()
 	// merge the heaps
 	bh.insert(bh1.head);	
 
+	*/
 
 
-	/*
+	// I DONT LIKE THIS WAY... 	
 	while(ch!='0')
 	{
 		cout<<"Enter your choice"<<endl;
@@ -507,5 +510,5 @@ int main()
 				cout<<endl<<"Invalid input"<<endl;
 		}
 	}
-	return 0;  */
+	return 0;  
 }
